@@ -1,0 +1,12 @@
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Users\rgomezn>openssl
+OpenSSL> exit
+
+C:\Users\rgomezn>keytool -exportcert -alias androiddebugkey -keystore C:\Users\r
+gomezn\.android\debug.keystore | openssl sha1 -binary | openssl base64
+Enter keystore password:  realmadrid7
+ga0RGNYHvNM5d0SLGQfpQWAPGJ8=
+
+C:\Users\rgomezn>
