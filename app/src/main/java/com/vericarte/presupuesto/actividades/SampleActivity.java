@@ -14,9 +14,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 
 
 public class SampleActivity extends ActionBarActivity {
@@ -59,45 +62,44 @@ public class SampleActivity extends ActionBarActivity {
                 return Color.WHITE;
             }
         });
+
         drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
+
         mDrawerLayout.setDrawerListener(drawerToggle);
         String[] values = new String[]{
-                "DEFAULT", "RED", "BLUE", "MATERIAL GREY"
+                "Inicio", "Metas", "Presupuesto", "Log out"
         };
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
         mDrawerList.setAdapter(adapter);
+
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
-                        mDrawerLayout.closeDrawer(Gravity.START);
+
                         break;
                     case 1:
-                        mDrawerList.setBackgroundColor(getResources().getColor(R.color.red));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.red));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.red));
-                        mDrawerLayout.closeDrawer(Gravity.START);
+
 
                         break;
                     case 2:
-                        mDrawerList.setBackgroundColor(getResources().getColor(R.color.blue));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.blue));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.blue));
-                        mDrawerLayout.closeDrawer(Gravity.START);
+
 
                         break;
                     case 3:
-                        mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
-                        mDrawerLayout.closeDrawer(Gravity.START);
-
+                        // Cerrar sesión
+                        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                        if(accessToken != null){
+                            LoginManager.getInstance().logOut();
+                        }
+                        finish();
+                        Toast.makeText(getApplicationContext(), "Adiós! ='(",
+                                Toast.LENGTH_SHORT).show();
                         break;
                 }
 
@@ -114,7 +116,7 @@ public class SampleActivity extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                mDrawerLayout.openDrawer(Gravity.START);
+                //mDrawerLayout.openDrawer(Gravity.START);
                 return true;
         }
 

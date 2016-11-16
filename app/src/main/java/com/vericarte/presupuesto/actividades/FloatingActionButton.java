@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-public class FloatingActionButton extends Button {
+public class FloatingActionButton extends ButtonPersonal {
 
     int sizeIcon = 24;
     int sizeRadius = 28;

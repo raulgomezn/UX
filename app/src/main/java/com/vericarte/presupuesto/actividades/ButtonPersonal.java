@@ -16,7 +16,7 @@ import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public abstract class Button extends RelativeLayout {
+public abstract class ButtonPersonal extends RelativeLayout {
 
     final static String MATERIAL_DESIGNXML = "http://schemas.android.com/apk/res-auto";
     final static String ANDROIDXML = "http://schemas.android.com/apk/res/android";
@@ -35,7 +35,7 @@ public abstract class Button extends RelativeLayout {
     float x = -1, y = -1;
     float radius = -1;
 
-    public Button(Context context, AttributeSet attrs) {
+    public ButtonPersonal(Context context, AttributeSet attrs) {
         super(context, attrs);
         setDefaultProperties();
     }
@@ -81,6 +81,8 @@ public abstract class Button extends RelativeLayout {
                 y = -1;
             }
         }
+
+        //Aqui crear la vista de se muestra del formulario
         return true;
     }
 
